@@ -135,6 +135,18 @@ public:
 				m_curr_node = m_root_node;
 			}
 		}
+		else if(em_state == TASK_NODE_BACK)
+		{
+			if(NULL != m_curr_node->m_p_parent)
+			{
+				m_curr_node = m_curr_node->m_p_parent;
+			}
+			else
+			{
+				//没有父节点，本身就是首节点
+				m_curr_node = m_root_node;
+			}
+		}
 
 		return 0;
 	}
