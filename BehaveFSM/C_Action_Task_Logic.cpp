@@ -1,21 +1,21 @@
-#include "C_Action_Task_Node.h"
+#include "C_Action_Task_Logic.h"
 
-C_Action_Task_Node::C_Action_Task_Node()
+C_Action_Task_Logic::C_Action_Task_Logic()
 {
 	m_p_action_fsm     = NULL;
 	m_curr_state_index = 0;
 }
 
-C_Action_Task_Node::~C_Action_Task_Node()
+C_Action_Task_Logic::~C_Action_Task_Logic()
 {
 }
 
-void C_Action_Task_Node::Set_Action_FSM(C_Action_FSM* p_action_fsm)
+void C_Action_Task_Logic::Set_Action_FSM(C_Action_FSM* p_action_fsm)
 {
 	m_p_action_fsm = p_action_fsm;
 }
 
-void C_Action_Task_Node::Init(C_Action_FSM* p_action_fsm)
+void C_Action_Task_Logic::Init(C_Action_FSM* p_action_fsm)
 {
 	_STATE_LIST_INFO obj_STATE_LIST_INFO;
 	obj_STATE_LIST_INFO.m_state_id     = ACTION_STAND;
@@ -35,7 +35,7 @@ void C_Action_Task_Node::Init(C_Action_FSM* p_action_fsm)
 	Set_Action_FSM(p_action_fsm);
 }
 
-EM_TASK_NODE_EXECUTE C_Action_Task_Node::Execute_Node(I_Param* p_param)
+EM_TASK_LOGIC_EXECUTE C_Action_Task_Logic::Execute_Node(I_Param* p_param)
 {
 	//获得上一次执行的时间
 	time_t tt_Last_Update = Get_Execute_Time();
@@ -58,12 +58,12 @@ EM_TASK_NODE_EXECUTE C_Action_Task_Node::Execute_Node(I_Param* p_param)
 			m_p_action_fsm->Do_Event(p_param);
 		}
 
-		Set_Task_Node_State(TASK_NODE_RUNNING);
-		return TASK_NODE_EXCUTE;
+		Set_Task_Node_State(TASK_LOGIC_RUNNING);
+		return TASK_LOGIC_EXCUTE;
 	}
 	else
 	{
-		if(Get_Task_Node_State() == TASK_NODE_FINISH)
+		if(Get_Task_Node_State() == TASK_LOGIC_FINISH)
 		{
 			//随机获得下一次随机事件
 			int nIndex = Random_Number(1, (int)m_vec_State_List.size());
@@ -81,8 +81,8 @@ EM_TASK_NODE_EXECUTE C_Action_Task_Node::Execute_Node(I_Param* p_param)
 				m_p_action_fsm->Do_Event(p_param);
 			}
 
-			Set_Task_Node_State(TASK_NODE_RUNNING);
-			return TASK_NODE_EXCUTE;
+			Set_Task_Node_State(TASK_LOGIC_RUNNING);
+			return TASK_LOGIC_EXCUTE;
 		}
 		else
 		{
@@ -91,13 +91,13 @@ EM_TASK_NODE_EXECUTE C_Action_Task_Node::Execute_Node(I_Param* p_param)
 			if(n_interval < m_vec_State_List[m_curr_state_index].m_execute_time)
 			{
 				//什么都不做
-				return TASK_NODE_EXCUTE;
+				return TASK_LOGIC_EXCUTE;
 			}
 			else
 			{
 				//执行完了，需要执行下一个节点
-				Set_Task_Node_State(TASK_NODE_FINISH);
-				return TASK_NODE_NEXT;
+				Set_Task_Node_State(TASK_LOGIC_FINISH);
+				return TASK_LOGIC_NEXT;
 			}
 		}
 	}

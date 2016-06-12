@@ -2,8 +2,8 @@
 //
 
 #include "Action_FSM.h"
-#include "C_Action_Task_Node.h"
-#include "C_Action_Look_Task_Node.h"
+#include "C_Action_Task_Logic.h"
+#include "C_Action_Look_Task_Logic.h"
 #include "Base_Task.h"
 
 #ifdef WIN32
@@ -30,16 +30,16 @@ int main(int argc, char* argv[])
 #endif
 	
 	//创建条件数
-	C_Action_Task_Node      obj_Action_Task_Node;
-	C_Action_Look_Task_Node obj_Action_Look_Task_Node;
-	I_Base_Task             obj_Base_Task;
+	C_Action_Task_Logic      obj_Action_Task_Logic;
+	C_Action_Look_Task_Logic obj_Action_Look_Task_Logic;
+	I_Base_Task              obj_Base_Task;
 
-	obj_Action_Look_Task_Node.Init(&action_fsm);
-	obj_Action_Task_Node.Init(&action_fsm);
+	obj_Action_Look_Task_Logic.Init(&action_fsm);
+	obj_Action_Task_Logic.Init(&action_fsm);
 
 	//添加节点映射信息
-	obj_Base_Task.Add_Task_Node(NULL, &obj_Action_Look_Task_Node);
-	obj_Base_Task.Add_Task_Node(&obj_Action_Look_Task_Node, &obj_Action_Task_Node);
+	obj_Base_Task.Add_Task_Node(NULL, &obj_Action_Look_Task_Logic, NODE_CLASS_SIGNAL);
+	obj_Base_Task.Add_Task_Node(&obj_Action_Look_Task_Logic, &obj_Action_Task_Logic, NODE_CLASS_SIGNAL);
 
 	//测试行为树
 	while (true)
