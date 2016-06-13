@@ -86,7 +86,7 @@
     <ClInclude Include="Base_Conmon.h" />
     <ClInclude Include="Base_FSM.h" />
     <ClInclude Include="Base_Task.h" />
-    <ClInclude Include="Base_Task_Node.h" />
+    <ClInclude Include="Base_Task_Logic.h" />
     <ClInclude Include="C_Action_Look_Task_Logic.h" />
     <ClInclude Include="C_Action_Task_Logic.h" />
     <ClInclude Include="stdafx.h" />

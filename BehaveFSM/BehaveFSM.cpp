@@ -38,8 +38,8 @@ int main(int argc, char* argv[])
 	obj_Action_Task_Logic.Init(&action_fsm);
 
 	//添加节点映射信息
-	obj_Base_Task.Add_Task_Node(NULL, &obj_Action_Look_Task_Logic, NODE_CLASS_SIGNAL);
-	obj_Base_Task.Add_Task_Node(&obj_Action_Look_Task_Logic, &obj_Action_Task_Logic, NODE_CLASS_SIGNAL);
+	obj_Base_Task.Add_Task_Node(1001, NULL, &obj_Action_Look_Task_Logic, NODE_CLASS_SIGNAL);
+	obj_Base_Task.Add_Task_Node(1002, &obj_Action_Look_Task_Logic, &obj_Action_Task_Logic, NODE_CLASS_SIGNAL);
 
 	//测试行为树
 	while (true)

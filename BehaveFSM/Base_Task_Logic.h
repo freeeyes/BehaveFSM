@@ -21,29 +21,34 @@ enum EM_TASK_LOGIC_STATE
 	TASK_LOGIC_FINISH,
 };
 
+#define NONE_NODE_ID -1     //无节点ID
+
+//逻辑返回信息
+struct _Logic_Return
+{
+	int                   m_n_node_id;     //下一个节点ID
+	EM_TASK_LOGIC_EXECUTE m_em_execute;    //当前节点执行状态
+
+	_Logic_Return()
+	{
+		m_n_node_id  = NONE_NODE_ID;
+		m_em_execute = TASK_LOGIC_NEXT;
+	}
+};
+
+//节点逻辑执行模块
 class I_Base_Task_Logic
 {
 public:
 	//所有任务节点都可以有一个状态机，也可以没有
 	I_Base_Task_Logic()
-	{	
-		m_n_node_id      = 0;
+	{
 		m_tt_update_time = 0;
 		m_em_node_state  = TASK_LOGIC_FINISH;
 	}
 
 	virtual ~I_Base_Task_Logic()
 	{
-	}
-
-	void Set_Node_Id(int n_node_id)
-	{
-		m_n_node_id = n_node_id;
-	}
-
-	int Get_Node_Id()
-	{
-		return m_n_node_id;
 	}
 
 	void Set_Execute_Time()
@@ -68,12 +73,11 @@ public:
 		return m_em_node_state;
 	}
 
-	//执行节点判断条件
-	virtual EM_TASK_LOGIC_EXECUTE Execute_Node(I_Param* p_param) = 0;
+	//执行节点逻辑
+	virtual _Logic_Return Execute_Logic(I_Param* p_param) = 0;
 
 
 private:
-	int    m_n_node_id;
 	time_t m_tt_update_time;
 	EM_TASK_LOGIC_STATE m_em_node_state;
 };
