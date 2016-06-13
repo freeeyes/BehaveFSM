@@ -54,6 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>./Base;./FSM;./Node_Logic</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,21 +83,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Action_FSM.h" />
-    <ClInclude Include="Base_Conmon.h" />
-    <ClInclude Include="Base_FSM.h" />
-    <ClInclude Include="Base_Task.h" />
-    <ClInclude Include="Base_Task_Logic.h" />
-    <ClInclude Include="C_Action_Look_Task_Logic.h" />
-    <ClInclude Include="C_Action_Task_Logic.h" />
+    <ClInclude Include="Base\Base_Conmon.h" />
+    <ClInclude Include="Base\Base_FSM.h" />
+    <ClInclude Include="Base\Base_Task.h" />
+    <ClInclude Include="Base\Base_Task_Logic.h" />
+    <ClInclude Include="FSM\Action_FSM.h" />
+    <ClInclude Include="Node_Logic\C_Action_Look_Task_Logic.h" />
+    <ClInclude Include="Node_Logic\C_Action_Task_Logic.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Action_FSM.cpp" />
     <ClCompile Include="BehaveFSM.cpp" />
-    <ClCompile Include="C_Action_Look_Task_Logic.cpp" />
-    <ClCompile Include="C_Action_Task_Logic.cpp" />
+    <ClCompile Include="FSM\Action_FSM.cpp" />
+    <ClCompile Include="Node_Logic\C_Action_Look_Task_Logic.cpp" />
+    <ClCompile Include="Node_Logic\C_Action_Task_Logic.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
