@@ -6,7 +6,8 @@
 //行为树列表基类
 //add by freeeyes
 
-#define MAX_CHILD_NODE_COUNT 16
+#define MAX_CHILD_NODE_COUNT 16    //最大的子节点个数
+#define MAX_NODE_STEP_COUNT  100   //最大的单次节点跳转次数 
 
 enum EM_TASK_NODE_CLASS
 {
@@ -230,8 +231,16 @@ public:
 
 	int Execute_Task(I_Param* p_param)
 	{
+		int n_node_index = 0;
 		while(true)
 		{
+			//如果寻找执行节点次数超过上限
+			if(n_node_index >= MAX_NODE_STEP_COUNT)
+			{
+				return -1;
+			}
+
+			//如果没有逻辑模块
 			if(m_curr_node->Get_Logic() == NULL)
 			{
 				return -1;
@@ -277,6 +286,8 @@ public:
 				//进入正在执行状态
 				return 0;
 			}
+
+			n_node_index++;
 		}
 
 
