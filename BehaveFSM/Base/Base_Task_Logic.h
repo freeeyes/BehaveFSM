@@ -1,5 +1,5 @@
-#ifndef _BASE_TASK_NODE_H
-#define _BASE_TASK_NODE_H
+#ifndef _BASE_TASK_LOGIC_H
+#define _BASE_TASK_LOGIC_H
 
 //AI的节点类
 //add by freeeyes
