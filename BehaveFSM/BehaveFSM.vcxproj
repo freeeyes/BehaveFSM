@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./Base;./FSM;./Node_Logic</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./Base;./FSM;./Node_Logic;./TinyXML;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,15 +90,23 @@
     <ClInclude Include="FSM\Action_FSM.h" />
     <ClInclude Include="Node_Logic\C_Action_Look_Task_Logic.h" />
     <ClInclude Include="Node_Logic\C_Action_Task_Logic.h" />
+    <ClInclude Include="RarseFSMXml.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TinyXML\tinystr.h" />
+    <ClInclude Include="TinyXML\tinyxml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BehaveFSM.cpp" />
     <ClCompile Include="FSM\Action_FSM.cpp" />
     <ClCompile Include="Node_Logic\C_Action_Look_Task_Logic.cpp" />
     <ClCompile Include="Node_Logic\C_Action_Task_Logic.cpp" />
+    <ClCompile Include="ParseFSMXml.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TinyXML\tinystr.cpp" />
+    <ClCompile Include="TinyXML\tinyxml.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,6 +5,7 @@
 #include "C_Action_Task_Logic.h"
 #include "C_Action_Look_Task_Logic.h"
 #include "Base_Task.h"
+#include "ParseFSMXml.h"
 
 #ifdef WIN32
 #include <windows.h> 
