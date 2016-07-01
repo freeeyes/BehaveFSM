@@ -3,9 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+#include <ctype.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 #include <vector>
-
 using namespace std;
 
 #define FSM_FUNCTION_BEGIN(x) switch(x) { 
@@ -46,5 +51,21 @@ public:
 #else
 #define PRINT_SAFE printf
 #endif
+
+static void sprintf_safe(char* szText, int nLen, const char* fmt ...)
+{
+	if(szText == NULL)
+	{
+		return;
+	}
+
+	va_list ap;
+	va_start(ap, fmt);
+
+	vsnprintf(szText, nLen, fmt, ap);
+	szText[nLen - 1] = '\0';
+
+	va_end(ap);
+};
 
 #endif

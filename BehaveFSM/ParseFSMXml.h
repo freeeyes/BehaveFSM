@@ -4,10 +4,7 @@
 #include "tinyxml.h"
 #include "tinystr.h"
 
-#include <stdio.h>
-#include <vector>
-
-using namespace std;
+#include "Base/Base_Conmon.h"
 
 //处理状态机的XML文件，变现成实际C++代码
 //add by freeeyes
@@ -27,13 +24,13 @@ typedef vector<_FSM_Include> vec_FSM_Include;
 
 struct _FSM_Event
 {
-	char m_szEventNamep[FSM_BUFF_100];
+	char m_szEventName[FSM_BUFF_100];
 	char m_szDesc[FSM_BUFF_100];
 
 	_FSM_Event()
 	{
-		m_szEventNamep[0]  = '\0';
-		m_szDesc[0]        = '\0';
+		m_szEventName[0]  = '\0';
+		m_szDesc[0]       = '\0';
 	}
 };
 typedef vector<_FSM_Event> vec_FSM_Event;
@@ -72,8 +69,6 @@ struct _FSM_ParamClass
 
 struct _FSM_Function
 {
-	char m_szProjectName[FSM_BUFF_100];
-	char m_szProjectDesc[FSM_BUFF_100];
 	char m_szFunction[FSM_BUFF_100];
 	char m_szEventID[FSM_BUFF_100];
 
@@ -81,18 +76,27 @@ struct _FSM_Function
 	{
 		m_szFunction[0]    = '\0';
 		m_szEventID[0]     = '\0';
-		m_szProjectName[0] = '\0';
-		m_szProjectDesc[0] = '\0';
+
 	}
 };
 typedef vector<_FSM_Function> vec_FSM_Function;
 
 struct _FSM_Class
 {
-	vec_FSM_Include m_vec_FSM_Include;
-	vec_FSM_Event   m_vec_FSM_Event;
-	_FSM_ParamClass m_FSM_ParamClass;
-	_FSM_Function   m_FSM_Function;
+	char m_szProjectName[FSM_BUFF_100];
+	char m_szFSMClassName[FSM_BUFF_100];
+	char m_szFSMDesc[FSM_BUFF_100];
+	vec_FSM_Include  m_vec_FSM_Include;
+	vec_FSM_Event    m_vec_FSM_Event;
+	_FSM_ParamClass  m_FSM_ParamClass;
+	vec_FSM_Function m_FSM_Function;
+
+	_FSM_Class()
+	{
+		m_szProjectName[0]  = '\0';
+		m_szFSMClassName[0] = '\0';
+		m_szFSMDesc[0]      = '\0';
+	}
 };
 typedef vector<_FSM_Class> vec_FSM_Class;
 
@@ -103,6 +107,8 @@ public:
 	~CParse_And_Create_FSM();
 
 	bool Parse_FSM_XML_File(const char* pFileName);
+
+	void Create_FSM_Code();
 
 	void Close();
 

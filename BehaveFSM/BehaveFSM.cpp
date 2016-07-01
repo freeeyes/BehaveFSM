@@ -9,12 +9,85 @@
 
 #ifdef WIN32
 #include <windows.h> 
+#include <io.h>
 #else
 #include <unistd.h>
+#include <stdio.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #endif
+
+typedef vector<string> vec_Xml_File_Name;
+
+//遍历指定的目录，获得所有XML文件名
+bool Read_Xml_Folder( string folderPath, vec_Xml_File_Name& obj_vec_Xml_File_Name)
+{
+#ifdef WIN32
+	_finddata_t FileInfo;
+	string strfind = folderPath + "\\*";
+	long Handle = _findfirst(strfind.c_str(), &FileInfo);
+
+	if (Handle == -1L)
+	{
+		return false;
+	}
+	do
+	{
+		//判断是否有子目录
+		if (FileInfo.attrib & _A_SUBDIR)    
+		{
+			//这个语句很重要
+			if( (strcmp(FileInfo.name,".") != 0 ) &&(strcmp(FileInfo.name,"..") != 0))   
+			{
+				//不必支持子目录遍历
+				//string newPath = folderPath + "\\" + FileInfo.name;
+				//dfsFolder(newPath);
+			}
+		}
+		else  
+		{
+			string filename = folderPath + "/" + FileInfo.name;
+			obj_vec_Xml_File_Name.push_back(filename);
+		}
+	} while (_findnext(Handle, &FileInfo) == 0);
+
+	_findclose(Handle);
+#else
+	DIR *dp;
+	struct dirent *entry;
+	struct stat statbuf;
+	if((dp = opendir(folderPath.c_str())) == NULL) 
+	{
+		printf("cannot open directory: %s\n", folderPath.c_str());
+		return false;
+	}
+	chdir(folderPath.c_str());
+	while((entry = readdir(dp)) != NULL) 
+	{
+		lstat(entry->d_name,&statbuf);
+		if(S_ISDIR(statbuf.st_mode)) 
+		{
+			if(strcmp(".",entry->d_name) == 0 || strcmp("..",entry->d_name) == 0)
+				continue;
+			//不需要支持子目录遍历
+			//printf("%*s%s/\n",depth,"",entry->d_name);
+			//dfsFolder(entry->d_name,depth+4);
+		} 
+		else 
+		{
+			string filename = folderPath + "/" + entry->d_name;
+			obj_vec_Xml_File_Name.push_back(filename);
+		}
+	}
+	chdir("..");
+	closedir(dp);
+#endif
+	return true;
+}
 
 int main(int argc, char* argv[])
 {
+	/*
 	//初始化随机种子
 	srand((int)time(0));
 
@@ -54,16 +127,16 @@ int main(int argc, char* argv[])
 		sleep(1);
 #endif
 	}
-
-	/*
-	action_fsm.Do_Event((I_Param* )&action_param);
-	action_fsm.Set_FSM_Curr_State(ACTION_SIT);
-	action_fsm.Do_Event((I_Param* )&action_param);
-	action_fsm.Set_FSM_Curr_State(ACTION_JAMP);
-	action_fsm.Do_Event((I_Param* )&action_param);
-	action_fsm.Set_FSM_Curr_State(ACTION_RUN);
-	action_fsm.Do_Event((I_Param* )&action_param);
 	*/
+
+	CParse_And_Create_FSM obj_Parse_And_Create_FSM;
+	vec_Xml_File_Name obj_FSM_FileList;
+	Read_Xml_Folder("./XML_DATA/FSM", obj_FSM_FileList);
+
+	for(int i = 0; i < obj_FSM_FileList.size(); i++)
+	{
+		obj_Parse_And_Create_FSM.Parse_FSM_XML_File(obj_FSM_FileList[i].c_str());
+	}
 
 	getchar();
 	return 0;

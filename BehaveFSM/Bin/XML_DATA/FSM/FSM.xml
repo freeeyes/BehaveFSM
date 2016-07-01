@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- add by freeeyes -->
+<!-- 行为树用到的状态机定义文件，支持多个状态机的声明 -->
+<configer ProjectName="TestBehaverTree">
+	<!--定义一个状态机类 -->
+	<C_Action_FSM desc="test FSM">
+		<!-- 状态机需要引用的头文联 -->
+		<FSMSInclude>
+			<Include>stdio.h</Include>
+		</FSMSInclude>
+	
+		<!-- 需要用到的事件ID定义 -->
+		<FSMState name="EM_STATE_ACTION_ID" desc="State ID">
+			<EventName desc="ACTION_STAND">ACTION_STAND</EventName>
+			<EventName desc="ACTION_SIT">ACTION_SIT</EventName>
+			<EventName desc="ACTION_JAMP">ACTION_JAMP</EventName>
+			<EventName desc="ACTION_RUN">ACTION_RUN</EventName>
+			<EventName desc="ACTION_LOOK">ACTION_LOOK</EventName>
+			<EventName desc="ACTION_ATTACK">ACTION_ATTACK</EventName>
+			<EventName desc="ACTION_DEFANCE">ACTION_DEFANCE</EventName>
+			<EventName desc="ACTION_DROP">ACTION_DROP</EventName>
+		</FSMState>
+		
+		<!-- 状态机入口参数类型定义 -->
+		<FSMParam>
+			<C_Action_Param desc="C_Action_FSM param">
+				<Column name="m_szParam" classtype="char" length="50" value="'\0'" desc="Param" />
+			</C_Action_Param>
+		</FSMParam>
+		
+		<!-- 状态机实现接口函数定义 -->	
+		<FSMFunction>
+			<Function name="Action_Stand" EventName="ACTION_STAND" />
+			<Function name="Action_Sit" EventName="ACTION_SIT" />
+			<Function name="Action_Jamp" EventName="ACTION_JAMP" />
+			<Function name="Action_Run" EventName="ACTION_RUN" />
+			<Function name="Action_Attack" EventName="ACTION_LOOK" />
+			<Function name="Action_Defance" EventName="ACTION_DEFANCE" />
+			<Function name="Action_Drop" EventName="ACTION_DROP" />
+		</FSMFunction>
+		
+	</C_Action_FSM>
+</configer>
