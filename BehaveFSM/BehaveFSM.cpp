@@ -133,12 +133,14 @@ int main(int argc, char* argv[])
 	vec_Xml_File_Name obj_FSM_FileList;
 	Read_Xml_Folder("./XML_DATA/FSM", obj_FSM_FileList);
 
-	for(int i = 0; i < obj_FSM_FileList.size(); i++)
+	for(int i = 0; i < (int)obj_FSM_FileList.size(); i++)
 	{
 		obj_Parse_And_Create_FSM.Parse_FSM_XML_File(obj_FSM_FileList[i].c_str());
 	}
 
-	getchar();
+	obj_Parse_And_Create_FSM.Create_FSM_Code();
+
+	//getchar();
 	return 0;
 }
 

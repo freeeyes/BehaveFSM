@@ -5,6 +5,14 @@
 #include "tinystr.h"
 
 #include "Base/Base_Conmon.h"
+#ifdef WIN32
+#include <io.h>
+#include <direct.h>
+#else
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#endif
 
 //处理状态机的XML文件，变现成实际C++代码
 //add by freeeyes
@@ -34,6 +42,19 @@ struct _FSM_Event
 	}
 };
 typedef vector<_FSM_Event> vec_FSM_Event;
+
+struct _FSM_Event_Enum
+{
+	char m_szName[FSM_BUFF_100];
+	char m_szDesc[FSM_BUFF_100];
+	vec_FSM_Event m_vec_FSM_Event;
+
+	_FSM_Event_Enum()
+	{
+		m_szName[0]  = '\0';
+		m_szDesc[0]  = '\0';
+	}
+};
 
 struct _FSM_Param_Column
 {
@@ -87,7 +108,7 @@ struct _FSM_Class
 	char m_szFSMClassName[FSM_BUFF_100];
 	char m_szFSMDesc[FSM_BUFF_100];
 	vec_FSM_Include  m_vec_FSM_Include;
-	vec_FSM_Event    m_vec_FSM_Event;
+	_FSM_Event_Enum  m_FSM_Event_Enum;
 	_FSM_ParamClass  m_FSM_ParamClass;
 	vec_FSM_Function m_FSM_Function;
 
@@ -111,6 +132,11 @@ public:
 	void Create_FSM_Code();
 
 	void Close();
+
+private:
+	void Create_FSM_Path(_FSM_Class obj_FSM_Class);
+	void Create_FSM_Head(const char* pRootPath, _FSM_Class obj_FSM_Class);
+	void Create_FSM_Cpp(const char* pRootPath, _FSM_Class obj_FSM_Class);
 
 private:
 	vec_FSM_Class m_vec_FSM_Class;

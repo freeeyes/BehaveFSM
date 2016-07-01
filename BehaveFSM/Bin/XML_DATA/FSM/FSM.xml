@@ -31,13 +31,13 @@
 		
 		<!-- 状态机实现接口函数定义 -->	
 		<FSMFunction>
-			<Function name="Action_Stand" EventName="ACTION_STAND" />
-			<Function name="Action_Sit" EventName="ACTION_SIT" />
-			<Function name="Action_Jamp" EventName="ACTION_JAMP" />
-			<Function name="Action_Run" EventName="ACTION_RUN" />
-			<Function name="Action_Attack" EventName="ACTION_LOOK" />
-			<Function name="Action_Defance" EventName="ACTION_DEFANCE" />
-			<Function name="Action_Drop" EventName="ACTION_DROP" />
+			<Function name="Action_Stand" EventName="s_state_id" />
+			<Function name="Action_Sit" EventName="s_state_id" />
+			<Function name="Action_Jamp" EventName="s_state_id" />
+			<Function name="Action_Run" EventName="s_state_id" />
+			<Function name="Action_Attack" EventName="s_state_id" />
+			<Function name="Action_Defance" EventName="s_state_id" />
+			<Function name="Action_Drop" EventName="s_state_id" />
 		</FSMFunction>
 		
 	</C_Action_FSM>
