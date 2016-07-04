@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- add by freeeyes -->
-<!-- 行为树用到的状态机定义文件，支持多个状态机的声明 -->
+<!-- 行为树用到的状态机定义文件，一个状态机一个XML文件-->
 <configer ProjectName="TestBehaverTree">
 	<!--定义一个状态机类 -->
 	<C_Action_FSM desc="test FSM">

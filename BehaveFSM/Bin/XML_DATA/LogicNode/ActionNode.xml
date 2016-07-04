@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- add by freeeyes -->
+<!-- 行为树用到的逻辑节点定义文件-->
+<configer ProjectName="TestBehaverTree">
+	<C_Action_Task_Logic name="obj_Action_Task_Logic" parent="obj_Action_Look_Task_Logic" id="1001" desc="">
+		<!-- 类中的参数声明-->
+		<Variable>
+			<Info class="C_Action_FSM*" name="m_p_action_fsm" desc="当前状态机" />
+			<Info class="vec_State_List*" name="m_vec_State_List" desc="可选状态列表" />
+			<Info class="short*" name="m_curr_state_index" desc="当前状态id在列表中的索引" />
+		</Variable>
+		<!-- 类中的函数声明-->
+		<Function>
+			<Info name="Init" return="void" desc="初始化状态机">
+				<Param class="C_Action_FSM*" name="p_action_fsm">
+			</Info>		
+		</Function>
+	</C_Action_Task_Logic>
+</configer>
