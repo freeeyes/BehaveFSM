@@ -6,6 +6,7 @@
 #include "C_Action_Look_Task_Logic.h"
 #include "Base_Task.h"
 #include "ParseFSMXml.h"
+#include "ParseLogicNodeXml.h"
 
 #ifdef WIN32
 #include <windows.h> 
@@ -139,6 +140,16 @@ int main(int argc, char* argv[])
 	}
 
 	obj_Parse_And_Create_FSM.Create_FSM_Code();
+
+	obj_FSM_FileList.clear();
+	Read_Xml_Folder("./XML_DATA/LogicNode", obj_FSM_FileList);
+
+	CParse_And_Create_Node obj_Parse_And_Create_Node;
+	for(int i = 0; i < (int)obj_FSM_FileList.size(); i++)
+	{
+		obj_Parse_And_Create_Node.Parse_Node_XML_File(obj_FSM_FileList[i].c_str());
+	}
+	obj_Parse_And_Create_Node.Create_Node_Code();
 
 	//getchar();
 	return 0;
