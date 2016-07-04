@@ -87,9 +87,6 @@
     <ClInclude Include="Base\Base_FSM.h" />
     <ClInclude Include="Base\Base_Task.h" />
     <ClInclude Include="Base\Base_Task_Logic.h" />
-    <ClInclude Include="FSM\Action_FSM.h" />
-    <ClInclude Include="Node_Logic\C_Action_Look_Task_Logic.h" />
-    <ClInclude Include="Node_Logic\C_Action_Task_Logic.h" />
     <ClInclude Include="ParseFSMXml.h" />
     <ClInclude Include="ParseLogicNodeXml.h" />
     <ClInclude Include="stdafx.h" />
@@ -99,9 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BehaveFSM.cpp" />
-    <ClCompile Include="FSM\Action_FSM.cpp" />
-    <ClCompile Include="Node_Logic\C_Action_Look_Task_Logic.cpp" />
-    <ClCompile Include="Node_Logic\C_Action_Task_Logic.cpp" />
     <ClCompile Include="ParseFSMXml.cpp" />
     <ClCompile Include="ParseLogicNodeXml.cpp" />
     <ClCompile Include="stdafx.cpp" />
