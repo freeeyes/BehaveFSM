@@ -138,7 +138,7 @@ private:
 	void Create_FSM_Head(const char* pRootPath, _FSM_Class obj_FSM_Class);
 	void Create_FSM_Cpp(const char* pRootPath, _FSM_Class obj_FSM_Class);
 
-private:
+public:
 	vec_FSM_Class m_vec_FSM_Class;
 };
 

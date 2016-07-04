@@ -87,6 +87,7 @@
     <ClInclude Include="Base\Base_FSM.h" />
     <ClInclude Include="Base\Base_Task.h" />
     <ClInclude Include="Base\Base_Task_Logic.h" />
+    <ClInclude Include="MakeTestCode.h" />
     <ClInclude Include="ParseFSMXml.h" />
     <ClInclude Include="ParseLogicNodeXml.h" />
     <ClInclude Include="stdafx.h" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BehaveFSM.cpp" />
+    <ClCompile Include="MakeTestCode.cpp" />
     <ClCompile Include="ParseFSMXml.cpp" />
     <ClCompile Include="ParseLogicNodeXml.cpp" />
     <ClCompile Include="stdafx.cpp" />

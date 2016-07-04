@@ -115,7 +115,7 @@ private:
 	void Create_Node_Head(const char* pRootPath, _Node_Class obj_Node_Class);
 	void Create_Node_Cpp(const char* pRootPath, _Node_Class obj_Node_Class);
 
-private:
+public:
 	vec_Node_Class m_vec_Node_Class;
 };
 

@@ -1,12 +1,7 @@
 // BehaveFSM.cpp : 定义控制台应用程序的入口点。
 //
 
-//#include "Action_FSM.h"
-//#include "C_Action_Task_Logic.h"
-//#include "C_Action_Look_Task_Logic.h"
-//#include "Base_Task.h"
-#include "ParseFSMXml.h"
-#include "ParseLogicNodeXml.h"
+#include "MakeTestCode.h"
 
 #ifdef WIN32
 #include <windows.h> 
@@ -88,48 +83,6 @@ bool Read_Xml_Folder( string folderPath, vec_Xml_File_Name& obj_vec_Xml_File_Nam
 
 int main(int argc, char* argv[])
 {
-	/*
-	//初始化随机种子
-	srand((int)time(0));
-
-	//初始化状态机
-	C_Action_FSM action_fsm;
-	action_fsm.Init();
-
-	//测试初始化参数
-	C_Action_Param action_param;
-#ifdef WIN32
-	sprintf_s(action_param.m_szParam, 50, "(freeeyes){Hello my friend.}");
-#else
-	sprintf(action_param.m_szParam, "(freeeyes){Hello my friend.}");
-#endif
-	
-	//创建条件数
-	C_Action_Task_Logic      obj_Action_Task_Logic;
-	C_Action_Look_Task_Logic obj_Action_Look_Task_Logic;
-	I_Base_Task              obj_Base_Task;
-
-	obj_Action_Look_Task_Logic.Init(&action_fsm);
-	obj_Action_Task_Logic.Init(&action_fsm);
-
-	//添加节点映射信息
-	obj_Base_Task.Add_Task_Node(1001, NULL, &obj_Action_Look_Task_Logic, NODE_CLASS_SIGNAL);
-	obj_Base_Task.Add_Task_Node(1002, &obj_Action_Look_Task_Logic, &obj_Action_Task_Logic, NODE_CLASS_SIGNAL);
-
-	//测试行为树
-	while (true)
-	{
-		obj_Base_Task.Execute_Task(&action_param);
-
-		//休息1秒
-#ifdef WIN32
-		Sleep(1000);
-#else
-		sleep(1);
-#endif
-	}
-	*/
-
 	CParse_And_Create_FSM obj_Parse_And_Create_FSM;
 	vec_Xml_File_Name obj_FSM_FileList;
 	Read_Xml_Folder("./XML_DATA/FSM", obj_FSM_FileList);
@@ -150,6 +103,10 @@ int main(int argc, char* argv[])
 		obj_Parse_And_Create_Node.Parse_Node_XML_File(obj_FSM_FileList[i].c_str());
 	}
 	obj_Parse_And_Create_Node.Create_Node_Code();
+
+	CMakeTestCode objMakeTestCode;
+	objMakeTestCode.Create_Code(obj_Parse_And_Create_FSM.m_vec_FSM_Class, obj_Parse_And_Create_Node.m_vec_Node_Class);
+
 
 	//getchar();
 	return 0;
