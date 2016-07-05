@@ -234,7 +234,7 @@ void CParse_And_Create_Node::Create_Node_Head(const char* pRootPath, _Node_Class
 
 	}
 
-	sprintf_safe(szTemp, 200, ");\n\n");
+	sprintf_safe(szTemp, 200, "};\n\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 
 	sprintf_safe(szTemp, 200, "#endif\n\n");
@@ -274,7 +274,7 @@ void CParse_And_Create_Node::Create_Node_Cpp(const char* pRootPath, _Node_Class 
 	sprintf_safe(szTemp, 200, "}\n\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 
-	sprintf_safe(szTemp, 200, "_Logic_Return %s::Execute_Logic(I_Param* p_param);\n", obj_Node_Class.m_szClassName);
+	sprintf_safe(szTemp, 200, "_Logic_Return %s::Execute_Logic(I_Param* p_param)\n", obj_Node_Class.m_szClassName);
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 	sprintf_safe(szTemp, 200, "{\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
@@ -307,7 +307,7 @@ void CParse_And_Create_Node::Create_Node_Cpp(const char* pRootPath, _Node_Class 
 				fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 			}
 		}
-		sprintf_safe(szTemp, 200, ");\n");
+		sprintf_safe(szTemp, 200, ")\n");
 		fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 
 		int nReturn = strlen(obj_Node_Class.m_vec_Func_info[i].m_szReturn);

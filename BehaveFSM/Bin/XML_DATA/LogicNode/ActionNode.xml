@@ -3,10 +3,10 @@
 <!-- add by freeeyes -->
 <!-- 行为树用到的逻辑节点定义文件-->
 <configer ProjectName="TestBehaverTree">
-	<C_Action_Task_Logic name="obj_Action_Task_Logic" parent="obj_Action_Look_Task_Logic" id="1001" desc="">
+	<C_Action_Task_Logic name="obj_C_Action_Task_Logic" parent="obj_C_Action_Look_Task_Logic" id="1001" desc="">
 		<!-- 类中的参数声明-->
 		<IncludeFile>
-			<Include>Action_FSM.h</Include>
+			<Include>C_Action_FSM.h</Include>
 		</IncludeFile>		
 		<Variable>
 			<Info class="C_Action_FSM*" name="m_p_action_fsm" desc="当前状态机" />

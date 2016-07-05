@@ -46,7 +46,7 @@ void CParse_And_Create_FSM::Create_FSM_Path(_FSM_Class obj_FSM_Class)
 	char szTempFile[FSM_BUFF_100] = {'\0'};
 	sprintf_safe(szTempFile, FSM_BUFF_100, "%s/Base_Conmon.h", szRootPath);
 	Tranfile("../Base/Base_Conmon.h", szTempFile);
-	sprintf_safe(szTempFile, FSM_BUFF_100, "%s/Base_FSM.cpp", szRootPath);
+	sprintf_safe(szTempFile, FSM_BUFF_100, "%s/Base_FSM.h", szRootPath);
 	Tranfile("../Base/Base_FSM.h", szTempFile);
 	sprintf_safe(szTempFile, FSM_BUFF_100, "%s/Base_Task.h", szRootPath);
 	Tranfile("../Base/Base_Task.h", szTempFile);
@@ -149,6 +149,7 @@ void CParse_And_Create_FSM::Create_FSM_Head(const char* pRootPath, _FSM_Class ob
 			sprintf_safe(szTemp, 200, "\t%s m_%s[%d];\n", obj_FSM_Class.m_FSM_ParamClass.m_vec_FSM_Param_Column[i].m_szClassTypeName,
 				obj_FSM_Class.m_FSM_ParamClass.m_vec_FSM_Param_Column[i].m_szColumnName, 
 				obj_FSM_Class.m_FSM_ParamClass.m_vec_FSM_Param_Column[i].m_nLength);
+
 		}
 		else
 		{
@@ -171,7 +172,7 @@ void CParse_And_Create_FSM::Create_FSM_Head(const char* pRootPath, _FSM_Class ob
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 	sprintf_safe(szTemp, 200, "\t~%s();\n\n", obj_FSM_Class.m_szFSMClassName);
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
-	sprintf_safe(szTemp, 200, "\tInit();\n\n");
+	sprintf_safe(szTemp, 200, "\tvoid Init();\n\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 	sprintf_safe(szTemp, 200, "\tint Do_Event(I_Param* p_fsm_param);\n\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
@@ -379,6 +380,7 @@ bool CParse_And_Create_FSM::Parse_FSM_XML_File(const char* pFileName)
 				{
 					obj_FSM_Param_Column.m_nLength = atoi(pData);
 				}
+				sprintf_safe(obj_FSM_Param_Column.m_szInitValue, FSM_BUFF_100, "%s", (char* )pParamColumnNode->ToElement()->Attribute("value"));
 				sprintf_safe(obj_FSM_Param_Column.m_szDesc, FSM_BUFF_100, "%s", (char* )pParamColumnNode->ToElement()->Attribute("desc"));
 				obj_FSM_Class.m_FSM_ParamClass.m_vec_FSM_Param_Column.push_back(obj_FSM_Param_Column);
 			}

@@ -106,9 +106,10 @@ int main(int argc, char* argv[])
 
 	CMakeTestCode objMakeTestCode;
 	objMakeTestCode.Create_Code(obj_Parse_And_Create_FSM.m_vec_FSM_Class, obj_Parse_And_Create_Node.m_vec_Node_Class);
+	objMakeTestCode.Create_Make_File_Define(obj_Parse_And_Create_FSM.m_vec_FSM_Class, obj_Parse_And_Create_Node.m_vec_Node_Class);
+	objMakeTestCode.Create_Make_File(obj_Parse_And_Create_FSM.m_vec_FSM_Class, obj_Parse_And_Create_Node.m_vec_Node_Class);
 
-
-	//getchar();
+	getchar();
 	return 0;
 }
 
