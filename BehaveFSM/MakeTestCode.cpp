@@ -51,14 +51,14 @@ void CMakeTestCode::Create_Code(vec_FSM_Class& obj_vec_FSM_Class, vec_Node_Class
 	sprintf_safe(szTemp, 200, "{\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 
-	sprintf_safe(szTemp, 200, "\tC_Action_Param action_param;\n");
+¡¤	sprintf_safe(szTemp, 200, "\tC_Action_Param action_param;\n");
 	fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 	//³õÊ¼»¯×´Ì¬»ú
 	for(int i = 0; i < (int)obj_vec_FSM_Class.size(); i++)
 	{
 		sprintf_safe(szTemp, 200, "\t%s obj_%s;\n", obj_vec_FSM_Class[i].m_szFSMClassName, obj_vec_FSM_Class[i].m_szFSMClassName);
 		fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
-		sprintf_safe(szTemp, 200, "\tobj_%s¡£Init();\n", obj_vec_FSM_Class[i].m_szFSMClassName);
+		sprintf_safe(szTemp, 200, "\tobj_%s.Init();\n", obj_vec_FSM_Class[i].m_szFSMClassName);
 		fwrite(szTemp, strlen(szTemp), sizeof(char), pFile);
 	}
 	sprintf_safe(szTemp, 200, "\n");
